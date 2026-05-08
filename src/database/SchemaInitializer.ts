@@ -1,10 +1,5 @@
 import Database from 'better-sqlite3';
 
-/**
- * SchemaInitializer — Single Responsibility: database schema setup only.
- * Separated from DatabaseConnection so that connection management
- * and schema management remain independent concerns (SRP).
- */
 export class SchemaInitializer {
   static initialize(db: Database.Database): void {
     db.exec(`

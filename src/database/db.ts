@@ -3,11 +3,6 @@ import path from 'path';
 import fs from 'fs';
 import { SchemaInitializer } from './SchemaInitializer';
 
-/**
- * DatabaseConnection — Singleton Pattern.
- * Single Responsibility: manage the SQLite connection lifecycle only.
- * Schema setup is delegated to SchemaInitializer (SRP).
- */
 export class DatabaseConnection {
   private static instance: Database.Database | null = null;
 
@@ -32,12 +27,9 @@ export class DatabaseConnection {
     return db;
   }
 
-  /** For testing: inject an in-memory DB instance */
   public static setInstance(db: Database.Database): void {
     DatabaseConnection.instance = db;
   }
-
-  /** For testing: reset so next call opens a fresh connection */
   public static resetInstance(): void {
     if (DatabaseConnection.instance) {
       DatabaseConnection.instance.close();
