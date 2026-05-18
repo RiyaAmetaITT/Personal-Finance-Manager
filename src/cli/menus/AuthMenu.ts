@@ -2,6 +2,7 @@ import inquirer from 'inquirer';
 import { AuthService } from '../../services/AuthService';
 import { ConsoleFormatter } from '../ConsoleFormatter';
 import { Session } from '../../models/User';
+import { REGEX, NUMBERS } from '../../constants';
 
 export class AuthMenu {
   constructor(private readonly authService: AuthService) {}
@@ -66,19 +67,19 @@ export class AuthMenu {
       {
         type: 'input',
         name: 'username',
-        message: 'Choose a username (3–20 chars, letters/numbers/_):',
+        message: `Choose a username (${NUMBERS.USERNAME_MIN_LENGTH}–${NUMBERS.USERNAME_MAX_LENGTH} chars, letters/numbers/_):`,
         validate: (v) =>
-          /^[a-zA-Z0-9_]{3,20}$/.test(v.trim())
+          REGEX.USERNAME.test(v.trim())
             ? true
-            : 'Username must be 3–20 alphanumeric characters or underscores.',
+            : `Username must be ${NUMBERS.USERNAME_MIN_LENGTH}–${NUMBERS.USERNAME_MAX_LENGTH} alphanumeric characters or underscores.`,
       },
       {
         type: 'password',
         name: 'password',
-        message: 'Choose a password (min 6 characters):',
+        message: `Choose a password (min ${NUMBERS.PASSWORD_MIN_LENGTH} characters):`,
         mask: '*',
         validate: (v) =>
-          v.length >= 6 ? true : 'Password must be at least 6 characters.',
+          v.length >= NUMBERS.PASSWORD_MIN_LENGTH ? true : `Password must be at least ${NUMBERS.PASSWORD_MIN_LENGTH} characters.`,
       },
       {
         type: 'password',

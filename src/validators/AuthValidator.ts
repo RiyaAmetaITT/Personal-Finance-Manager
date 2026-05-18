@@ -1,22 +1,22 @@
 import { ValidationResult } from './ValidationResult';
 import { UserCreateInput } from '../models/User';
+import { REGEX, NUMBERS } from '../constants';
 
 export class AuthValidator {
-  private static readonly USERNAME_REGEX = /^[a-zA-Z0-9_]{3,20}$/;
   static validateRegistration(data: UserCreateInput): ValidationResult {
     const errors: string[] = [];
 
     if (
       typeof data.username !== 'string' ||
-      !this.USERNAME_REGEX.test(data.username.trim())
+      !REGEX.USERNAME.test(data.username.trim())
     ) {
       errors.push(
-        'Username must be 3–20 characters and contain only letters, numbers, or underscores.'
+        `Username must be ${NUMBERS.USERNAME_MIN_LENGTH}–${NUMBERS.USERNAME_MAX_LENGTH} characters and contain only letters, numbers, or underscores.`
       );
     }
 
-    if (typeof data.password !== 'string' || data.password.length < 6) {
-      errors.push('Password must be at least 6 characters long.');
+    if (typeof data.password !== 'string' || data.password.length < NUMBERS.PASSWORD_MIN_LENGTH) {
+      errors.push(`Password must be at least ${NUMBERS.PASSWORD_MIN_LENGTH} characters long.`);
     }
 
     return { isValid: errors.length === 0, errors };

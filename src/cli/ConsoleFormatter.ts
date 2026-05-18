@@ -1,15 +1,16 @@
 import chalk from 'chalk';
+import { NUMBERS } from '../constants';
 
 export class ConsoleFormatter {
   static formatCurrency(amount: number): string {
-    return `₹${amount.toFixed(2)}`;
+    return `₹${amount.toFixed(NUMBERS.CURRENCY_DECIMALS)}`;
   }
 
   static printTable(headers: string[], rows: string[][]): void {
     const colWidths = headers.map((h, i) =>
       Math.max(h.length, ...rows.map((r) => (r[i] ?? '').length))
     );
-    const sep = '+' + colWidths.map((w) => '-'.repeat(w + 2)).join('+') + '+';
+    const sep = '+' + colWidths.map((w) => '-'.repeat(w + NUMBERS.TABLE_PADDING)).join('+') + '+';
     const formatRow = (cols: string[]) =>
       '|' + cols.map((c, i) => ` ${c.padEnd(colWidths[i])} `).join('|') + '|';
 
@@ -35,13 +36,13 @@ export class ConsoleFormatter {
   }
 
   static header(title: string): void {
-    const line = '═'.repeat(title.length + 4);
+    const line = '═'.repeat(title.length + NUMBERS.HEADER_PADDING);
     console.log(chalk.cyan.bold(`\n╔${line}╗`));
     console.log(chalk.cyan.bold(`║  ${title}  ║`));
     console.log(chalk.cyan.bold(`╚${line}╝\n`));
   }
 
   static divider(): void {
-    console.log(chalk.gray('─'.repeat(50)));
+    console.log(chalk.gray('─'.repeat(NUMBERS.DIVIDER_LENGTH)));
   }
 }

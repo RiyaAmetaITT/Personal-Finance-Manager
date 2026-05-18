@@ -1,7 +1,7 @@
 import { ValidationResult } from './ValidationResult';
+import { REGEX, NUMBERS } from '../constants';
 
 export class BudgetValidator {
-  private static readonly MONTH_REGEX = /^\d{4}-\d{2}$/;
 
   static validate(data: {
     category: unknown;
@@ -27,7 +27,7 @@ export class BudgetValidator {
 
     if (
       typeof data.month !== 'string' ||
-      !this.MONTH_REGEX.test(data.month) ||
+      !REGEX.MONTH.test(data.month) ||
       !this.isValidMonth(data.month)
     ) {
       errors.push('Month must be in YYYY-MM format (e.g. 2024-01).');
@@ -38,6 +38,11 @@ export class BudgetValidator {
 
   private static isValidMonth(monthStr: string): boolean {
     const [year, month] = monthStr.split('-').map(Number);
-    return year >= 2000 && year <= 2100 && month >= 1 && month <= 12;
+    return (
+      year >= NUMBERS.MIN_YEAR &&
+      year <= NUMBERS.MAX_YEAR &&
+      month >= NUMBERS.MIN_MONTH &&
+      month <= NUMBERS.MAX_MONTH
+    );
   }
 }

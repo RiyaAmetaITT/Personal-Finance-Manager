@@ -1,7 +1,7 @@
 import { ValidationResult } from './ValidationResult';
+import { REGEX } from '../constants';
 
 export class ExpenseValidator {
-  private static readonly DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
   static validate(data: {
     amount: unknown;
@@ -28,7 +28,7 @@ export class ExpenseValidator {
 
     if (
       typeof data.date !== 'string' ||
-      !this.DATE_REGEX.test(data.date) ||
+      !REGEX.DATE.test(data.date) ||
       !this.isValidDate(data.date)
     ) {
       errors.push('Date must be a valid date in YYYY-MM-DD format.');
