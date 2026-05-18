@@ -1,6 +1,5 @@
 import { ValidationResult } from './ValidationResult';
 
-/** Validates raw input before creating or updating a Budget record. */
 export class BudgetValidator {
   private static readonly MONTH_REGEX = /^\d{4}-\d{2}$/;
 

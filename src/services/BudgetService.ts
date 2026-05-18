@@ -3,10 +3,6 @@ import { IExpenseRepository } from '../repositories/interfaces/IExpenseRepositor
 import { Budget, BudgetCreateInput, BudgetStatus } from '../models/Budget';
 import { BudgetValidator } from '../validators/BudgetValidator';
 
-/**
- * BudgetService — business logic for budget management.
- * Depends on IBudgetRepository and IExpenseRepository (DIP).
- */
 export class BudgetService {
   constructor(
     private readonly budgetRepository: IBudgetRepository,

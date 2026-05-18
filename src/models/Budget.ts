@@ -2,7 +2,7 @@ export interface Budget {
   id?: number;
   category: string;
   monthly_limit: number;
-  month: string;          // format: YYYY-MM
+  month: string;
 }
 
 export interface BudgetCreateInput {

@@ -2,12 +2,6 @@ import { IExpenseRepository } from '../repositories/interfaces/IExpenseRepositor
 import { IIncomeRepository } from '../repositories/interfaces/IIncomeRepository';
 import { FinancialSummary, CategorySummary } from '../models/Summary';
 
-/**
- * SummaryService — Facade Pattern.
- * Single Responsibility: aggregate financial data from multiple repositories
- * into a unified summary. Services and CLI call one method; internal complexity is hidden.
- * Depends on interfaces, not concrete classes (DIP).
- */
 export class SummaryService {
   constructor(
     private readonly expenseRepository: IExpenseRepository,

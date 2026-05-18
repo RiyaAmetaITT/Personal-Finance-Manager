@@ -1,12 +1,10 @@
 import chalk from 'chalk';
 
 export class ConsoleFormatter {
-  // ─── Currency ───────────────────────────────────────────────────────────────
   static formatCurrency(amount: number): string {
     return `₹${amount.toFixed(2)}`;
   }
 
-  // ─── Table ───────────────────────────────────────────────────────────────────
   static printTable(headers: string[], rows: string[][]): void {
     const colWidths = headers.map((h, i) =>
       Math.max(h.length, ...rows.map((r) => (r[i] ?? '').length))
@@ -24,7 +22,6 @@ export class ConsoleFormatter {
     console.log(chalk.gray(sep));
   }
 
-  // ─── Alerts ───────────────────────────────────────────────────────────────────
   static success(message: string): void {
     console.log(chalk.green(`\n[OK] ${message}\n`));
   }
