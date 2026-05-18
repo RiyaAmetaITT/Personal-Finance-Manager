@@ -1,0 +1,19 @@
+export const REGEX = {
+  DATE: /^\d{4}-\d{2}-\d{2}$/,
+  MONTH: /^\d{4}-\d{2}$/,
+  USERNAME: /^[a-zA-Z0-9_]{3,20}$/,
+};
+
+export const NUMBERS = {
+  MIN_YEAR: 2000,
+  MAX_YEAR: 2100,
+  MIN_MONTH: 1,
+  MAX_MONTH: 12,
+  USERNAME_MIN_LENGTH: 3,
+  USERNAME_MAX_LENGTH: 20,
+  PASSWORD_MIN_LENGTH: 6,
+  CURRENCY_DECIMALS: 2,
+  TABLE_PADDING: 2,
+  HEADER_PADDING: 4,
+  DIVIDER_LENGTH: 50,
+};
